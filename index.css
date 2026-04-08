@@ -145,26 +145,6 @@ button {
     height: 24px;
 }
 
-.btn-signup {
-    background-color: var(--accent-yellow);
-    color: var(--bg-main);
-    padding: 12px 24px;
-    border: none;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: var(--transition-fast);
-}
-
-.btn-signup:hover {
-    background-color: #ffe033;
-    transform: scale(1.05);
-    box-shadow: 0 8px 24px rgba(255, 215, 0, 0.3);
-}
-
-.btn-signup:active {
-    transform: scale(0.98);
-}
 
 
 
@@ -329,13 +309,139 @@ button {
     border-radius: 20px;
 }
 
+/* request project form modal */
 
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
 
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
 
+.request-project {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    z-index: 1001;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: var(--space-lg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+}
 
+.request-project.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
 
+.request-project h2 {
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    text-align: center;
+    margin-top: var(--space-sm);
+}
 
+.request-project input,
+.request-project textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+}
+
+.request-project input:focus,
+.request-project textarea:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+}
+
+.request-project textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: transparent;
+    color: var(--text-secondary);
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0;
+}
+
+.close-btn:hover {
+    color: var(--accent-yellow);
+    transform: scale(1.1);
+}
+
+.close-btn:active {
+    transform: scale(0.95);
+}
+
+.submit {
+    background-color: var(--accent-yellow);
+    color: var(--bg-main);
+    padding: 14px 32px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: var(--transition-fast);
+    margin-top: var(--space-sm);
+}
+
+.submit:hover {
+    background-color: #ffe033;
+    transform: scale(1.02);
+    box-shadow: 0 4px 16px rgba(255, 215, 0, 0.3);
+}
+
+.submit:active {
+    transform: scale(0.98);
+}
+
+body.modal-open {
+    overflow: hidden;
+}
 
 
 
@@ -667,6 +773,15 @@ button {
     height: 28px;
     color: var(--text-secondary);
 }
+#email{
+    color: var(--primary-blue);
+    font-weight: 600;
+
+}
+#email:hover{
+    color: #3399ff;
+    cursor: pointer;
+}
 
 .social-icons a:hover img {
     color: var(--primary-blue);
@@ -828,4 +943,29 @@ button {
     .hero-image img {
         animation: none;
     }
+    
+    /* Modal responsive styles */
+    .request-project {
+        width: 95%;
+        max-width: none;
+        padding: var(--space-md);
+        max-height: 85vh;
     }
+    
+    .request-project h2 {
+        font-size: 1.5rem;
+        padding-right: var(--space-lg);
+    }
+    
+    .close-btn {
+        top: 8px;
+        right: 8px;
+        width: 28px;
+        height: 28px;
+        font-size: 1.5rem;
+    }
+    
+    .submit {
+        padding: 12px 24px;
+    }
+}

@@ -1,5 +1,3 @@
-// TheGISguy Portfolio - JavaScript Functionality
-
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
     initMobileMenu();
@@ -8,9 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initButtonHandlers();
 });
 
-// ======================================
+// 
 // Mobile Menu Toggle
-// ======================================
+// 
 
 function initMobileMenu() {
     const hamburger = document.querySelector('.hamburger');
@@ -41,9 +39,9 @@ function initMobileMenu() {
     }
 }
 
-// ======================================
+//          
 // Smooth Scroll for Navigation Links
-// ======================================
+//          
 
 function initSmoothScroll() {
     const navLinks = document.querySelectorAll('.nav-link');
@@ -69,9 +67,9 @@ function initSmoothScroll() {
     });
 }
 
-// ======================================
+//          
 // Active Navigation Highlighting
-// ======================================
+//          
 
 function initActiveNavHighlight() {
     const sections = document.querySelectorAll('section[id]');
@@ -100,16 +98,55 @@ function initActiveNavHighlight() {
     highlightNav(); // Initial call
 }
 
-// ======================================
+//          
 // Button Click Handlers
-// ======================================
+//          
 
 function initButtonHandlers() {
-    // Sign Up Button
-    const signUpBtn = document.querySelector('.btn-signup');
-    if (signUpBtn) {
-        signUpBtn.addEventListener('click', function() {
-            // Scroll to contact section or open signup modal
+        
+    // CTA Button - Opens project request modal
+    const ctaBtn = document.querySelector('.btn-cta');
+    const closeBtn = document.querySelector('#close-form');
+    const modalOverlay = document.querySelector('#modal-overlay');
+    const requestForm = document.querySelector('#reques-form');
+    const emailBtn = document.querySelector('#email');
+    
+    if (ctaBtn && requestForm && modalOverlay && closeBtn && emailBtn ) {
+        // Open modal when CTA button is clicked
+        ctaBtn.addEventListener('click', function() {
+            requestForm.classList.add('active');
+            modalOverlay.classList.add('active');
+            document.body.classList.add('modal-open');
+        });
+        
+         emailBtn.addEventListener('click', function() {
+            requestForm.classList.add('active');
+            modalOverlay.classList.add('active');
+            document.body.classList.add('modal-open');
+        });
+
+
+        // Close modal when X button is clicked
+        closeBtn.addEventListener('click', function() {
+            closeModal();
+        });
+        
+        // Close modal when overlay is clicked
+        modalOverlay.addEventListener('click', function() {
+            closeModal();
+        });
+        
+        // Close modal when Escape key is pressed
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && requestForm.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    }
+    
+    // Email Button - Scrolls to contact
+    if (emailBtn) {
+        emailBtn.addEventListener('click', function() {
             const contactSection = document.querySelector('#contact');
             if (contactSection) {
                 contactSection.scrollIntoView({ behavior: 'smooth' });
@@ -117,15 +154,11 @@ function initButtonHandlers() {
         });
     }
     
-    // CTA Button
-    const ctaBtn = document.querySelector('.btn-cta');
-    if (ctaBtn) {
-        ctaBtn.addEventListener('click', function() {
-            const contactSection = document.querySelector('#contact');
-            if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
+    // Helper function to close modal
+    function closeModal() {
+        requestForm.classList.remove('active');
+        modalOverlay.classList.remove('active');
+        document.body.classList.remove('modal-open');
     }
     
     // Project Links
@@ -139,10 +172,8 @@ function initButtonHandlers() {
     });
 }
 
-// ======================================
+         
 // Intersection Observer for Animations
-// ======================================
-
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -161,9 +192,9 @@ document.querySelectorAll('.project-card, .stat-box').forEach(el => {
     observer.observe(el);
 });
 
-// ======================================
+//          
 // Header Scroll Effect
-// ======================================
+//          
 
 let lastScroll = 0;
 const header = document.querySelector('.header');
@@ -187,18 +218,18 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// ======================================
-// Form Validation (if needed)
-// ======================================
+//          
+// Form Validation
+//          
 
 function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
 }
 
-// ======================================
+//          
 // Utility Functions
-// ======================================
+//          
 
 function debounce(func, wait) {
     let timeout;
@@ -223,9 +254,9 @@ function throttle(func, limit) {
     };
 }
 
-// ======================================
+          
 // Console Branding
-// ======================================
+  
 
 console.log('%c TheGISguy Portfolio ', 'background: #0066ff; color: #ffd700; font-size: 20px; font-weight: bold; padding: 10px;');
 console.log('%c GIS Solutions & Spatial Analysis ', 'background: #0f1419; color: #e0e0e0; font-size: 14px; padding: 5px;');
